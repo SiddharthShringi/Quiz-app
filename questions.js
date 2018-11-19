@@ -4,6 +4,9 @@ class Question {
         this.questionChoices = questionChoices;
         this.answer = answer;
     }
+    checkAnswer() {
+
+    }
 }
 
 let questions = [
@@ -19,6 +22,28 @@ let questions = [
 
 class Quiz {
     constructor(questionList) {
+        this.score = 0;
+        this.currentQuestionIndex = 0;
+        this.questionArray = questionList;
+    }
+    startScreen() {
+
+    }
+    questionScreen() {
+        let question = document.querySelector('.question');
+        let option = document.querySelector('.options');
+        let choiceArray = this.questionArray[this.currentQuestionIndex].questionChoices;
+        question.innerHTML = `<p>${this.questionArray[this.currentQuestionIndex].questionText}</p>`
+        option.innerHTML = ""
+        choiceArray.forEach(element => { option.innerHTML += `<li><button>${element}</button></li>`    
+        });
+        
+    }
+    resultScreen() {
 
     }
 }
+
+let newQuiz = new Quiz(questions);
+let start = document.querySelector('.start');
+start.addEventListener('click', newQuiz.questionScreen.bind(newQuiz));
