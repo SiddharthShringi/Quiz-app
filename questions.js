@@ -42,21 +42,21 @@ class Quiz {
         if (this.currentQuestionIndex > (this.questionArray.length-1)) {
             console.log(this.current)
             this.resultScreen();
+        } else {
+            quizPage.classList.remove("none");
+            welcomePage.classList.add("none");
+            resultPage.classList.add("none");
+            let question = document.querySelector('.question');
+            let option = document.querySelector('.options');
+            let status = document.querySelector('.qstatus');
+            let choiceArray = this.questionArray[this.currentQuestionIndex].questionChoices;
+            question.innerHTML = `<p>${this.questionArray[this.currentQuestionIndex].questionText}</p>`
+            option.innerHTML = ""
+            choiceArray.forEach(element => {
+            option.innerHTML += `<li><button class="choice">${element}</button></li>`
+            });
+            status.innerHTML = `<p>You are seeing question no.${this.currentQuestionIndex + 1} out of ${this.questionArray.length}</p>`
         }
-        quizPage.classList.remove("none");
-        welcomePage.classList.add("none");
-        resultPage.classList.add("none");
-        let question = document.querySelector('.question');
-        let option = document.querySelector('.options');
-        let status = document.querySelector('.qstatus');
-        let choiceArray = this.questionArray[this.currentQuestionIndex].questionChoices;
-        question.innerHTML = `<p>${this.questionArray[this.currentQuestionIndex].questionText}</p>`
-        option.innerHTML = ""
-        choiceArray.forEach(element => {
-        option.innerHTML += `<li><button class="choice">${element}</button></li>`
-        });
-        status.innerHTML = `<p>You are seeing question no.${this.currentQuestionIndex + 1} out of ${this.questionArray.length}</p>`
-
     }
     displayNextQuestion(event) {
         if (!event.target.classList.contains("choice")) return;
@@ -70,6 +70,7 @@ class Quiz {
         quizPage.classList.add('none');
         resultPage.classList.remove('none');
         welcomePage.classList.add('none');
+        status.classList.add('none')
         resultPage.innerHTML = `<p>Your final score is ${this.score}`;
     }
 }
