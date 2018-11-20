@@ -46,9 +46,6 @@ class Quiz {
             quizPage.classList.remove("none");
             welcomePage.classList.add("none");
             resultPage.classList.add("none");
-            let question = document.querySelector('.question');
-            let option = document.querySelector('.options');
-            let status = document.querySelector('.qstatus');
             let choiceArray = this.questionArray[this.currentQuestionIndex].questionChoices;
             question.innerHTML = `<p>${this.questionArray[this.currentQuestionIndex].questionText}</p>`
             option.innerHTML = ""
